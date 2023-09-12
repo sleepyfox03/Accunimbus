@@ -1,0 +1,186 @@
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
+		<title></title>
+
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="{% static 'style.css' %}">
+		
+		
+
+
+	</head>
+
+
+	<body>
+		
+		<div class="site-content">
+			<div class="site-header">
+				<div class="container">
+					<a href="" class="branding">
+						<img src="{% static 'images/logo.png' %}" alt="" class="logo">
+						<div class="logo-type">
+							<h1 class="site-title">Accunimbus</h1>
+							<small class="site-description">Know Before You Go</small>
+						</div>
+					</a>
+
+					<!-- Default snippet for navigation -->
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item"><a href="">Home</a></li>
+							<li class="menu-item"><a href="photos">Photos</a></li>
+							<li class="menu-item"><a href="contact">Contact</a></li>
+						</ul> <!-- .menu -->
+					</div> <!-- .main-navigation -->
+
+					<div class="mobile-navigation"></div>
+
+				</div>
+			</div> <!-- .site-header -->
+
+			<div class="hero">
+				<div class="container">
+					<form action="" method='post' class="find-location">
+						{% csrf_token %}
+						
+						<input type="text" placeholder="Find your location..." name="city" required>
+						<input type="submit" value="Find">
+					</form>
+
+				</div>
+			</div>
+
+			<div class="forecast-table">
+				<div class="container">
+					<div class="forecast-container">
+						<div class="today forecast">
+						{% if data.country_code %}
+							<div class="forecast-header">
+								<div class="day">{{data.day}}</div>
+								<div class="date">{{data.date1}}</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								
+								<div class="location">{{city}} </div>
+									<div class="mt-5">
+										<div>Country Code : {{data.country_code}}</div>
+										<div>Coordinates : {{data.coordinate}}</div>
+										
+									</div>
+								<div class="degree">
+									<div class="num">{{data.temp}}<sup>o</sup>C</div>
+									<div class="forecast-icon">
+										<img src="{% static data.icon %}" alt="" width=150>
+										
+										
+									</div>	
+									<h6>{{data.icondesc}}</h6>
+								</div>
+								<span title="Humidity"><img src="{% static 'images/icon-humidity.png' %}" alt="" >{{data.humidity}} %</span>
+								<span title="Pressure"><img src="{% static 'images/icon-pressure.png' %}" alt="">{{data.pressure}} hPa</span>
+								<span title="Wind Speed"><img src="{% static 'images/icon-wind.png' %}" alt="">{{data.wind}} km/h</span>
+								<span title="Wind Direction"><img src="{% static 'images/icon-compass.png' %}" alt="">{{data.winddeg}}<sup>o</sup></span>
+								<span title="Visibility"><img src="{% static 'images/icon-visibility.png' %}" alt="">{{data.visibility}} Km</span>
+							</div>
+						</div>
+						{% else %}
+						
+						<script>alert('{{error}}');</script>
+						{% endif %}
+
+						
+					</div>
+				</div>
+			</div>
+			
+				<div class="fullwidth-block">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<h2 class="section-title">Application features</h2>
+								<ul class="arrow-feature">
+									<li>
+										<h3>Temperature </h3>
+										<p>Displayed in Fahrenheit or Celsius</p>
+									</li>
+									<li>
+										<h3>Barometric Pressure</h3>
+										<p>Atmospheric pressure measurement.</p>
+									</li>
+									<li>
+										<h3>Humidity</h3>
+										<p>Percentage indicating the amount of moisture in the air.	</p>
+									</li>
+									<li>
+										<h3>Coordinates </h3>
+										<p>Numbers used to specify the precise location of a point or object in a 2-D or 3-D space</p>
+									</li>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<h2 class="section-title">Weather analysis</h2>
+								<ul class="arrow-list">
+									<li>Data Collection: Gathering meteorological information from various sources.</li>
+									<li>Observation: Analyzing current weather conditions using data from instruments and stations.</li>
+									<li>Pattern Recognition: Identifying weather patterns like high and low-pressure systems.</li>
+									<li>Numerical Models: Using computer simulations to make weather predictions.</li>
+									<li>Satellite and Radar Data: Monitoring cloud cover, precipitation, and severe weather.</li>
+									<li>Weather Prediction: Forecasting short-term and long-term weather conditions.</li>
+									<li>Severe Weather Alerts: Issuing warnings for hazardous weather events.</li>
+									<li>Climate Analysis: Studying long-term climate trends and changes.</li>
+									
+								</ul>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div>
+					
+					  
+
+				
+			</main> <!-- .main-content -->
+
+			<footer class="site-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<form action="#" class="subscribe-form">
+								<input type="text" placeholder="Enter your email to subscribe...">
+								<input type="submit" value="Subscribe">
+							</form>
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<div class="social-links">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-google-plus"></i></a>
+								<a href="#"><i class="fa fa-pinterest"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<p class="colophon">All rights reserved</p>
+				</div>
+			</footer> <!-- .site-footer -->
+		</div>
+		
+		<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+		<script src="{% static 'js/plugins.js' %}"></script>
+		<script src="{% static 'js/app.js' %}"></script>
+		
+	</body>
+
+</html>
